@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Functional utility library for javascript</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css" rel="stylesheet" />
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="docs.html" class="active">Documentation</a></li>
+                <li><a href="repl.html">REPL</a></li>
+            </ul>
+        </nav>
+
+        <aside>
+            <input type="text" placeholder="Filter..." />
+            <ul>
+                <li><a href="#curry">curry</a></li>
+                <li><a href="#flip">flip</a></li>
+                <li><a href="#transduce">transduce</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <section class="code-container" id="curry">
+                <h2>Curry Function</h2>
+                <p>
+                    The curry function is a powerful tool in functional programming. It allows you to transform a
+                    function that takes multiple arguments into a sequence of functions, each taking a single argument.
+                    This is especially useful in scenarios where you need to apply some of the arguments to a function
+                    at one time and the rest at another.
+                </p>
+
+                <h3>Example</h3>
+                <p>Below is an example of a simple curry function implementation in JavaScript:</p>
+                <pre><code class="language-js">
+                function sum(a, b, c) {
+                    return a + b + c;
+                }
+            
+                const curriedSum = curry(sum);
+                console.log(curriedSum(1)(2)(3)); // Outputs: 6
+                </code></pre>
+            </section>
+
+            <section class="code-container" id="flip">
+                <h2>Flip Function</h2>
+                <p>
+                    The 'flip' function is a higher-order function in functional programming that takes a function as
+                    input and returns a new function with the order of its arguments reversed. This is particularly
+                    useful when you want to switch the order in which arguments are passed to a function, enabling more
+                    flexible function composition.
+                </p>
+
+                <h3>Example</h3>
+                <p>Here is an example of a flip function implementation in JavaScript:</p>
+                <pre><code class="language-js">        
+                function divide(a, b) {
+                    return a / b;
+                }
+            
+                const flippedDivide = flip(divide);
+                console.log(flippedDivide(2, 10)); // Outputs: 5 (since it's actually 10 / 2)
+                </code></pre>
+            </section>
+
+            <section class="code-container" id="transduce">
+                <h2>Transduce Function</h2>
+                <p>
+                    The 'transduce' function is a cornerstone in functional programming for efficiently transforming and
+                    reducing collections. It combines transformation and reduction steps, allowing you to process data
+                    with reduced iterations and improved performance. Transduce is particularly effective for operations
+                    on large datasets or streams where efficiency is critical.
+                </p>
+
+                <h3>Example</h3>
+                <p>Below is an example of a transduce function implementation in JavaScript:</p>
+                <pre><code class="language-js">
+                const increment = n => n + 1;
+                const sum = (a, b) => a + b;
+                const numbers = [1, 2, 3, 4];
+            
+                const result = transduce(increment, sum, 0, numbers);
+                console.log(result); // Outputs: 14 (since it increments each number and then sums them up)
+                </code></pre>
+            </section>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    </body>
+</html>
