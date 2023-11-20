@@ -9,7 +9,7 @@ body {
 nav {
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 98%;
     background-color: white;
     padding: 10px 0;
     text-align: center;
@@ -44,6 +44,10 @@ aside {
 }
 aside ul {
     list-style-type: none;
+    padding-left: 0;
+}
+aside ul li {
+    margin-bottom: 2px;
 }
 a {
     color: inherit;
@@ -61,6 +65,17 @@ a {
 }
 
 .home-container {
+    flex-grow: 1;
     border: 3px solid #333;
     margin: 10px;
+}
+
+#editor {
+    height: 400px;
+    width: 100%;
+}
+
+code {
+    width: 100%;
+    padding: 10px;
 }
