@@ -65,7 +65,8 @@ a {
 }
 
 .home-container {
-    flex-grow: 1;
+    margin: auto;
+    width: 80%;
     border: 3px solid #333;
     margin: 10px;
 }
@@ -73,9 +74,4 @@ a {
 #editor {
     height: 400px;
     width: 100%;
-}
-
-code {
-    width: 100%;
-    padding: 10px;
 }
