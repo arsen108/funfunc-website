@@ -45,6 +45,7 @@
                 <li><a href="#not">not</a></li>
                 <li><a href="#compose">compose</a></li>
                 <li><a href="#pipe">pipe</a></li>
+                <li><a href="#zip">zip</a></li>
                 <li><a href="#memoize">memoize</a></li>
                 <li><a href="#filterTransducer">filterTransducer</a></li>
                 <li><a href="#mapTransducer">mapTransducer</a></li>
@@ -167,6 +168,38 @@
                 console.log(addThenSquare(1, 2)); // Outputs: 9
                 </code></pre>
             </section>
+
+
+            <section class="code-container" id="zip">
+                <h2>Zip Function</h2>
+                <p>
+                  The zip function is used to combine two arrays element-wise, creating an array of pairs.
+                  It takes two arrays as input and returns a new array where each element is an array containing
+                  corresponding elements from the input arrays.
+                </p>
+              
+                <h3>Function Signature</h3>
+                <p><code>zip(a: Array, b: Array): Array</code></p>
+              
+                <h3>Example</h3>
+                <p>Below is an example of the zip function:</p>
+                <pre><code class="language-js">
+                function zip(a, b) {
+                    const len = Math.min(a.length, b.length);
+                    const zippedArray = new Array(len);
+              
+                    for (let i = 0; i < len; i++) {
+                        zippedArray[i] = [a[i], b[i]];
+                    }
+              
+                    return zippedArray;
+                }
+              
+                const arr1 = [1, 2, 3];
+                const arr2 = ['a', 'b', 'c'];
+                console.log(zip(arr1, arr2)); // Outputs: [[1, 'a'], [2, 'b'], [3, 'c']]
+                </code></pre>
+              </section>
 
             <section class="code-container" id="memoize">
                 <h2>Memoize Function</h2>
