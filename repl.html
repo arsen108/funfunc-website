@@ -5,6 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>FunFunc Library</title>
         <link rel="stylesheet" href="styles.css" />
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/theme/dracula.min.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/hint/show-hint.min.css"
+        />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/codemirror.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/mode/javascript/javascript.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.32.0/addon/hint/show-hint.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/funfunc@0.1.2/dist/funfunc.min.js"></script>
     </head>
     <body>
         <nav>
@@ -15,10 +26,96 @@
             </ul>
         </nav>
 
-        <main class="content">
-            <header>
-                <h1>REPL</h1>
-            </header>
-        </main>
+        <div class="repl-container">
+            <h3>Input:</h3>
+
+            <textarea id="myTextarea">
+function sum(a, b, c) {
+    return a + b + c;
+}
+                         
+const curriedSum = F.curry(sum);
+console.log(curriedSum(1)(2)(3)); // Outputs 6
+</textarea
+            >
+        </div>
+
+        <button class="btn-repl" onclick="runCode()">Run</button>
+        <button class="btn-repl" onclick="resetCode()">Reset</button>
+
+        <div class="output-container">
+            <h3>Output:</h3>
+            <div id="output"></div>
+        </div>
+
+        <script>
+            var myTextarea = document.getElementById("myTextarea");
+            var editor = CodeMirror.fromTextArea(myTextarea, {
+                lineNumbers: true,
+                mode: { name: "javascript", json: true },
+                theme: "dracula",
+                extraKeys: { Tab: "autocomplete" },
+            });
+
+            CodeMirror.registerHelper("hint", "javascript", function (editor, options) {
+                var word = /[\w$]+/;
+                var cur = editor.getCursor();
+                var token = editor.getTokenAt(cur);
+
+                if (token.string === ".") {
+                    var obj = "F";
+                    var methods = [
+                        "curry",
+                        "partial",
+                        "flip",
+                        "reverse",
+                        "not",
+                        "compose",
+                        "pipe",
+                        "memoize",
+                        "filterTransducer",
+                        "mapTransducer",
+                        "transduce",
+                        "zip",
+                    ];
+
+                    return {
+                        list: methods,
+                        from: CodeMirror.Pos(cur.line, token.start + 1),
+                        to: CodeMirror.Pos(cur.line, token.end),
+                    };
+                }
+            });
+
+            editor.setOption("hintOptions", {
+                hint: CodeMirror.hint.javascript,
+                completeSingle: false,
+            });
+
+            function runCode() {
+                var code = editor.getValue();
+
+                var outputDiv = document.getElementById("output");
+                outputDiv.innerHTML = "";
+
+                var originalLog = console.log;
+                console.log = function (...args) {
+                    originalLog.apply(console, args);
+                    outputDiv.innerHTML += `<div>> ${args.join(" ")}</div>`;
+                };
+
+                try {
+                    eval(code);
+                } catch (e) {
+                    outputDiv.innerHTML += `<div style="color: red;">Error: ${e.message}</div>`;
+                } finally {
+                    console.log = originalLog;
+                }
+            }
+
+            function resetCode() {
+                editor.setValue("");
+            }
+        </script>
     </body>
 </html>
