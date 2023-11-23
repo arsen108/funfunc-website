@@ -7,7 +7,55 @@
         <link rel="stylesheet" href="styles.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js/styles/monokai-sublime.min.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-        <script>hljs.highlightAll();</script>
+        <script>
+            hljs.highlightAll();
+        </script>
+
+        <script type="module" defer>
+            var methods = [
+                "curry",
+                "partial",
+                "flip",
+                "reverse",
+                "not",
+                "compose",
+                "pipe",
+                "memoize",
+                "filterTransducer",
+                "mapTransducer",
+                "transduce",
+                "zip",
+            ];
+
+            let ul = document.querySelector(".method-list");
+
+            methods.forEach((method) => {
+                let li = document.createElement("li");
+                let a = document.createElement("a");
+
+                a.setAttribute("href", `#${method}`);
+                a.textContent = method;
+                li.appendChild(a);
+                ul.appendChild(li);
+            });
+
+            let input = document.querySelector(".filter-input");
+
+            input.addEventListener("input", (event) => {
+                let lis = ul.getElementsByTagName("li");
+                let filterValue = event.target.value.toLowerCase();
+
+                for (let i = 0; i < lis.length; i++) {
+                    let methodName = lis[i].innerText.toLowerCase();
+                    if (!methodName.includes(filterValue)) {
+                        lis[i].style.display = "none";
+                    } else {
+                        lis[i].style.display = "block";
+                    }
+                }
+            });
+        </script>
+
         <script type="module" defer>
             document.querySelector("aside > ul").addEventListener("click", function (event) {
                 if (event.target.tagName === "A") {
@@ -26,6 +74,7 @@
             });
         </script>
     </head>
+
     <body>
         <nav>
             <ul>
@@ -34,38 +83,26 @@
                 <li><a href="repl.html">REPL</a></li>
             </ul>
         </nav>
-<div class="docs-container">
-        <aside>
-            <input class="filter-input" type="text" placeholder="Filter..." />
-            <ul>
-                <li><a href="#curry">curry</a></li>
-                <li><a href="#partial">partial</a></li>
-                <li><a href="#flip">flip</a></li>
-                <li><a href="#reverse">reverse</a></li>
-                <li><a href="#not">not</a></li>
-                <li><a href="#compose">compose</a></li>
-                <li><a href="#pipe">pipe</a></li>
-                <li><a href="#zip">zip</a></li>
-                <li><a href="#memoize">memoize</a></li>
-                <li><a href="#filterTransducer">filterTransducer</a></li>
-                <li><a href="#mapTransducer">mapTransducer</a></li>
-                <li><a href="#transduce">transduce</a></li>
-            </ul>
-        </aside>
 
-        <main class="content">
-            <section class="code-container" id="curry">
-                <h2>Curry Function</h2>
-                <p>
-                    The curry function is a powerful tool in functional programming. It allows you to transform a
-                    function that takes multiple arguments into a sequence of functions, each taking a single argument.
-                    This is especially useful in scenarios where you need to apply some of the arguments to a function
-                    at one time and the rest at another.
-                </p>
+        <div class="docs-container">
+            <aside>
+                <input class="filter-input" type="text" placeholder="Filter..." />
+                <ul class="method-list"></ul>
+            </aside>
 
-                <h3>Example</h3>
-                <p>Below is an example of a simple curry function implementation in JavaScript:</p>
-                <pre><code class="language-js">
+            <main class="content">
+                <section class="code-container" id="curry">
+                    <h2>Curry Function</h2>
+                    <p>
+                        The curry function is a powerful tool in functional programming. It allows you to transform a
+                        function that takes multiple arguments into a sequence of functions, each taking a single
+                        argument. This is especially useful in scenarios where you need to apply some of the arguments
+                        to a function at one time and the rest at another.
+                    </p>
+
+                    <h3>Example</h3>
+                    <p>Below is an example of a simple curry function implementation in JavaScript:</p>
+                    <pre><code class="language-js">
                 function sum(a, b, c) {
                     return a + b + c;
                 }
@@ -73,17 +110,17 @@
                 const curriedSum = F.curry(sum);
                 console.log(curriedSum(1)(2)(3)); // Outputs: 6
                 </code></pre>
-            </section>
+                </section>
 
-            <section class="code-container" id="partial">
-                <h2>Partial Function</h2>
-                <p>
-                    The partial function pre-fills some arguments of a function, creating a new function with fewer
-                    arguments. This is useful for creating more specific functions from general ones.
-                </p>
-                <h3>Example</h3>
-                <p>Below is an example of a simple partial function implementation in JavaScript:</p>
-                <pre><code class="language-js">
+                <section class="code-container" id="partial">
+                    <h2>Partial Function</h2>
+                    <p>
+                        The partial function pre-fills some arguments of a function, creating a new function with fewer
+                        arguments. This is useful for creating more specific functions from general ones.
+                    </p>
+                    <h3>Example</h3>
+                    <p>Below is an example of a simple partial function implementation in JavaScript:</p>
+                    <pre><code class="language-js">
                 function greet(greeting, name) {
                     return greeting + ' ' + name;
                 }
@@ -91,17 +128,17 @@
                 const sayHelloTo = F.partial(greet, 'Hello');
                 console.log(sayHelloTo('John')); // Outputs: Hello John
                 </code></pre>
-            </section>
+                </section>
 
-            <section class="code-container" id="flip">
-                <h2>Flip Function</h2>
-                <p>
-                    The flip function reverses the order of arguments of a given function. It's useful when you want to
-                    change the order in which arguments are applied.
-                </p>
-                <h3>Example</h3>
-                <p>Below is an example of a flip function implementation in JavaScript:</p>
-                <pre><code class="language-js">
+                <section class="code-container" id="flip">
+                    <h2>Flip Function</h2>
+                    <p>
+                        The flip function reverses the order of arguments of a given function. It's useful when you want
+                        to change the order in which arguments are applied.
+                    </p>
+                    <h3>Example</h3>
+                    <p>Below is an example of a flip function implementation in JavaScript:</p>
+                    <pre><code class="language-js">
                 function divide(x, y) {
                     return x / y;
                 }
@@ -109,107 +146,95 @@
                 const invertedDivide = F.flip(divide);
                 console.log(invertedDivide(2, 10)); // Outputs: 5
                 </code></pre>
-            </section>
+                </section>
 
-            <section class="code-container" id="reverse">
-                <h2>Reverse Function</h2>
-                <p>The reverse function inverts the order of elements in an array or characters in a string.</p>
-                <h3>Example</h3>
-                <p>Below is an example of a reverse function implementation in JavaScript:</p>
-                <pre><code class="language-js">
+                <section class="code-container" id="reverse">
+                    <h2>Reverse Function</h2>
+                    <p>The reverse function inverts the order of elements in an array or characters in a string.</p>
+                    <h3>Example</h3>
+                    <p>Below is an example of a reverse function implementation in JavaScript:</p>
+                    <pre><code class="language-js">
                 const reversedArray = F.reverse([1, 2, 3]);
                 console.log(reversedArray); // Outputs: [3, 2, 1]
                 </code></pre>
-            </section>
+                </section>
 
-            <section class="code-container" id="not">
-                <h2>Not Function</h2>
-                <p>
-                    The not function creates a negation of a given predicate function. It's useful for creating opposite
-                    condition checks.
-                </p>
-                <h3>Example</h3>
-                <p>Below is an example of a not function implementation in JavaScript:</p>
-                <pre><code class="language-js">
+                <section class="code-container" id="not">
+                    <h2>Not Function</h2>
+                    <p>
+                        The not function creates a negation of a given predicate function. It's useful for creating
+                        opposite condition checks.
+                    </p>
+                    <h3>Example</h3>
+                    <p>Below is an example of a not function implementation in JavaScript:</p>
+                    <pre><code class="language-js">
                 const isEven = x => x % 2 === 0;
                 const isOdd = F.not(isEven);
                 console.log(isOdd(3)); // Outputs: true
                 </code></pre>
-            </section>
+                </section>
 
-            <section class="code-container" id="compose">
-                <h2>Compose Function</h2>
-                <p>
-                    The compose function takes multiple functions and creates a new function that is the composition of
-                    those functions, applied right to left.
-                </p>
-                <h3>Example</h3>
-                <p>Below is an example of a compose function implementation in JavaScript:</p>
-                <pre><code class="language-js">
+                <section class="code-container" id="compose">
+                    <h2>Compose Function</h2>
+                    <p>
+                        The compose function takes multiple functions and creates a new function that is the composition
+                        of those functions, applied right to left.
+                    </p>
+                    <h3>Example</h3>
+                    <p>Below is an example of a compose function implementation in JavaScript:</p>
+                    <pre><code class="language-js">
                 const add = (x, y) => x + y;
                 const square = x => x * x;
                 const addAndSquare = F.compose(square, add);
                 console.log(addAndSquare(1, 2)); // Outputs: 9
                 </code></pre>
-            </section>
+                </section>
 
-            <section class="code-container" id="pipe">
-                <h2>Pipe Function</h2>
-                <p>
-                    Similar to compose, the pipe function takes multiple functions and creates a new function that is
-                    the composition of those functions, applied left to right.
-                </p>
-                <h3>Example</h3>
-                <p>Below is an example of a pipe function implementation in JavaScript:</p>
-                <pre><code class="language-js">
+                <section class="code-container" id="pipe">
+                    <h2>Pipe Function</h2>
+                    <p>
+                        Similar to compose, the pipe function takes multiple functions and creates a new function that
+                        is the composition of those functions, applied left to right.
+                    </p>
+                    <h3>Example</h3>
+                    <p>Below is an example of a pipe function implementation in JavaScript:</p>
+                    <pre><code class="language-js">
                 const add = (x, y) => x + y;
                 const square = x => x * x;
                 const addThenSquare = F.pipe(add, square);
                 console.log(addThenSquare(1, 2)); // Outputs: 9
                 </code></pre>
-            </section>
+                </section>
 
+                <section class="code-container" id="zip">
+                    <h2>Zip Function</h2>
+                    <p>
+                        The zip function is used to combine two arrays element-wise, creating an array of pairs. It
+                        takes two arrays as input and returns a new array where each element is an array containing
+                        corresponding elements from the input arrays.
+                    </p>
 
-            <section class="code-container" id="zip">
-                <h2>Zip Function</h2>
-                <p>
-                  The zip function is used to combine two arrays element-wise, creating an array of pairs.
-                  It takes two arrays as input and returns a new array where each element is an array containing
-                  corresponding elements from the input arrays.
-                </p>
-              
-                <h3>Function Signature</h3>
-                <p><code>zip(a: Array, b: Array): Array</code></p>
-              
-                <h3>Example</h3>
-                <p>Below is an example of the zip function:</p>
-                <pre><code class="language-js">
-                function zip(a, b) {
-                    const len = Math.min(a.length, b.length);
-                    const zippedArray = new Array(len);
-              
-                    for (let i = 0; i < len; i++) {
-                        zippedArray[i] = [a[i], b[i]];
-                    }
-              
-                    return zippedArray;
-                }
-              
+                    <h3>Function Signature</h3>
+                    <p><code>zip(a: Array, b: Array): Array</code></p>
+
+                    <h3>Example</h3>
+                    <p>Below is an example of the zip function:</p>
+                    <pre><code class="language-js">
                 const arr1 = [1, 2, 3];
                 const arr2 = ['a', 'b', 'c'];
                 console.log(zip(arr1, arr2)); // Outputs: [[1, 'a'], [2, 'b'], [3, 'c']]
                 </code></pre>
-              </section>
+                </section>
 
-            <section class="code-container" id="memoize">
-                <h2>Memoize Function</h2>
-                <p>
-                    The memoize function caches the results of function calls, so that subsequent calls with the same
-                    arguments can return immediately with the cached result.
-                </p>
-                <h3>Example</h3>
-                <p>Below is an example of a memoize function implementation in JavaScript:</p>
-                <pre><code class="language-js">
+                <section class="code-container" id="memoize">
+                    <h2>Memoize Function</h2>
+                    <p>
+                        The memoize function caches the results of function calls, so that subsequent calls with the
+                        same arguments can return immediately with the cached result.
+                    </p>
+                    <h3>Example</h3>
+                    <p>Below is an example of a memoize function implementation in JavaScript:</p>
+                    <pre><code class="language-js">
                 const expensiveFunction = (num) => {
                     console.log('Computing...');
                     return num * num;
@@ -219,48 +244,48 @@
                 console.log(memoizedExpensiveFunction(5)); // Outputs: Computing... 25
                 console.log(memoizedExpensiveFunction(5)); // Outputs: 25 (no computing this time)
                 </code></pre>
-            </section>
+                </section>
 
-            <section class="code-container" id="filterTransducer">
-                <h2>FilterTransducer Function</h2>
-                <p>
-                    The filterTransducer function creates a transducer that filters elements based on a predicate
-                    function. It is used in functional programming to build efficient data processing pipelines.
-                </p>
-                <h3>Example</h3>
-                <p>Below is an example of a filterTransducer function implementation in JavaScript:</p>
-                <pre><code class="language-js">
+                <section class="code-container" id="filterTransducer">
+                    <h2>FilterTransducer Function</h2>
+                    <p>
+                        The filterTransducer function creates a transducer that filters elements based on a predicate
+                        function. It is used in functional programming to build efficient data processing pipelines.
+                    </p>
+                    <h3>Example</h3>
+                    <p>Below is an example of a filterTransducer function implementation in JavaScript:</p>
+                    <pre><code class="language-js">
                 const isEven = x => x % 2 === 0;
                 const evenFilterTransducer = F.filterTransducer(isEven);
                 // Use evenFilterTransducer in a transduce context
                 </code></pre>
-            </section>
+                </section>
 
-            <section class="code-container" id="mapTransducer">
-                <h2>MapTransducer Function</h2>
-                <p>
-                    The mapTransducer function creates a transducer that applies a transformation function to each
-                    element in a collection. It allows for efficient and composable transformations.
-                </p>
-                <h3>Example</h3>
-                <p>Below is an example of a mapTransducer function implementation in JavaScript:</p>
-                <pre><code class="language-js">
+                <section class="code-container" id="mapTransducer">
+                    <h2>MapTransducer Function</h2>
+                    <p>
+                        The mapTransducer function creates a transducer that applies a transformation function to each
+                        element in a collection. It allows for efficient and composable transformations.
+                    </p>
+                    <h3>Example</h3>
+                    <p>Below is an example of a mapTransducer function implementation in JavaScript:</p>
+                    <pre><code class="language-js">
                 const double = x => x * 2;
                 const doubleMapTransducer = F.mapTransducer(double);
                 // Use doubleMapTransducer in a transduce context
                 </code></pre>
-            </section>
+                </section>
 
-            <section class="code-container" id="transduce">
-                <h2>Transduce Function</h2>
-                <p>
-                    The transduce function applies a combination of transformation and filtering steps (transducers) to
-                    a collection, producing an aggregated result. It encapsulates complex data processing in a concise
-                    and efficient manner.
-                </p>
-                <h3>Example</h3>
-                <p>Below is an example of a transduce function implementation in JavaScript:</p>
-                <pre><code class="language-js">
+                <section class="code-container" id="transduce">
+                    <h2>Transduce Function</h2>
+                    <p>
+                        The transduce function applies a combination of transformation and filtering steps (transducers)
+                        to a collection, producing an aggregated result. It encapsulates complex data processing in a
+                        concise and efficient manner.
+                    </p>
+                    <h3>Example</h3>
+                    <p>Below is an example of a transduce function implementation in JavaScript:</p>
+                    <pre><code class="language-js">
                 // Example usage of transduce combining mapTransducer and filterTransducer
                 const result = F.transduce(
                     F.compose(F.filterTransducer(isEven), F.mapTransducer(double)),
@@ -270,8 +295,8 @@
                 );
                 console.log(result); // Outputs: [4, 8]
                 </code></pre>
-            </section>
-        </main>
-        </body></div>
+                </section>
+            </main>
+        </div>
     </body>
 </html>
