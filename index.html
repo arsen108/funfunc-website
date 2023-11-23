@@ -19,28 +19,27 @@
                 <li><a href="repl.html">REPL</a></li>
             </ul>
         </nav>
-
         <main class="home-container">
             <header class="library-header">
-                <h1>FunFunc - A Functional JavaScript Library</h1>
+                <h1 class="home-title">FunFunc - A Functional JavaScript Library</h1>
                 <p>Enhance your JavaScript projects with functional programming.</p>
             </header>
             <section class="installation-guide">
                 <h2>Installation Guide</h2>
                 <article class="node-installation">
                     <h3>Using with Node.js</h3>
-                    <p>Install via npm:</p>
+                    <p class="instruction">Install via npm:</p>
                     <pre><code class="language-sh">npm i funfunc</code></pre>
-                    <p>Include in your project via require:</p>
+                    <p class="instruction">Include in your project via require:</p>
                     <pre><code class="language-js">const F = require('funfunc')</code></pre>
-                    <p>Or as an ES module:</p>
+                    <p class="instruction">Or as an ES module:</p>
                     <pre><code class="language-js">import F from 'funfunc'</code></pre>
                 </article>
                 <article class="cdn-installation">
                     <h3>Using via CDN</h3>
-                    <p>Include directly in HTML:</p>
+                    <p class="instruction">Include directly in HTML:</p>
                     <pre><code class="language-html">&lt;script src="https://cdn.jsdelivr.net/npm/funfunc@0.0.1/dist/funfunc.min.js"&gt;&lt;/script&gt;</code></pre>
-                    <p>Usage without import:</p>
+                    <p class="instruction">Usage without import:</p>
                     <pre><code class="language-js">const add2 = F.curry(add)(2)</code></pre>
                 </article>
             </section>

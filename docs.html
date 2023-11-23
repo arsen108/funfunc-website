@@ -7,9 +7,6 @@
         <link rel="stylesheet" href="styles.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js/styles/monokai-sublime.min.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-        <script>
-            hljs.highlightAll();
-        </script>
     </head>
     <body>
         <nav>
@@ -19,9 +16,9 @@
                 <li><a href="repl.html">REPL</a></li>
             </ul>
         </nav>
-
+<div class="docs-container">
         <aside>
-            <input type="text" placeholder="Filter..." />
+            <input class="filter-input" type="text" placeholder="Filter..." />
             <ul>
                 <li><a href="#curry">curry</a></li>
                 <li><a href="#partial">partial</a></li>
@@ -224,5 +221,26 @@
                 </code></pre>
             </section>
         </main>
+        </body></div>
+        <script>
+            hljs.highlightAll();
+            console.log(document.querySelector("ul"));
+
+            document.querySelector("aside > ul").addEventListener("click", function (event) {
+                if (event.target.tagName === "A") {
+                    event.preventDefault();
+
+                    const href = event.target.getAttribute("href");
+                    const targetElement = document.querySelector(href);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: "smooth",
+                        });
+                    }
+                }
+            });
+        </script>
     </body>
 </html>
