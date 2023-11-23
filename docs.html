@@ -7,6 +7,24 @@
         <link rel="stylesheet" href="styles.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js/styles/monokai-sublime.min.css" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
+        <script type="module" defer>
+            document.querySelector("aside > ul").addEventListener("click", function (event) {
+                if (event.target.tagName === "A") {
+                    event.preventDefault();
+
+                    const href = event.target.getAttribute("href");
+                    const targetElement = document.querySelector(href);
+
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: "smooth",
+                        });
+                    }
+                }
+            });
+        </script>
     </head>
     <body>
         <nav>
@@ -222,25 +240,5 @@
             </section>
         </main>
         </body></div>
-        <script>
-            hljs.highlightAll();
-            console.log(document.querySelector("ul"));
-
-            document.querySelector("aside > ul").addEventListener("click", function (event) {
-                if (event.target.tagName === "A") {
-                    event.preventDefault();
-
-                    const href = event.target.getAttribute("href");
-                    const targetElement = document.querySelector(href);
-
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 100,
-                            behavior: "smooth",
-                        });
-                    }
-                }
-            });
-        </script>
     </body>
 </html>
