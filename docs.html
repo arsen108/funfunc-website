@@ -100,6 +100,9 @@
                         to a function at one time and the rest at another.
                     </p>
 
+                    <h3>Function Signature</h3>
+                    <p><code>curry(fn: Function): Function</code></p>
+
                     <h3>Example</h3>
                     <p>Below is an example of a simple curry function implementation in JavaScript:</p>
                     <pre><code class="language-js">
@@ -118,6 +121,10 @@
                         The partial function pre-fills some arguments of a function, creating a new function with fewer
                         arguments. This is useful for creating more specific functions from general ones.
                     </p>
+
+                    <h3>Function Signature</h3>
+                    <p><code>partial(fn: Function, ...fixedArgs: any): Function</code></p>
+
                     <h3>Example</h3>
                     <p>Below is an example of a simple partial function implementation in JavaScript:</p>
                     <pre><code class="language-js">
@@ -136,6 +143,10 @@
                         The flip function reverses the order of arguments of a given function. It's useful when you want
                         to change the order in which arguments are applied.
                     </p>
+
+                    <h3>Function Signature</h3>
+                    <p><code>flip(fn: Function): Function</code></p>
+
                     <h3>Example</h3>
                     <p>Below is an example of a flip function implementation in JavaScript:</p>
                     <pre><code class="language-js">
@@ -151,6 +162,10 @@
                 <section class="code-container" id="reverse">
                     <h2>Reverse Function</h2>
                     <p>The reverse function inverts the order of elements in an array or characters in a string.</p>
+
+                    <h3>Function Signature</h3>
+                    <p><code>reverse(arr: Array): Array</code></p>
+
                     <h3>Example</h3>
                     <p>Below is an example of a reverse function implementation in JavaScript:</p>
                     <pre><code class="language-js">
@@ -165,6 +180,10 @@
                         The not function creates a negation of a given predicate function. It's useful for creating
                         opposite condition checks.
                     </p>
+
+                    <h3>Function Signature</h3>
+                    <p><code>not(fn: Function): Function</code></p>
+
                     <h3>Example</h3>
                     <p>Below is an example of a not function implementation in JavaScript:</p>
                     <pre><code class="language-js">
@@ -180,6 +199,10 @@
                         The compose function takes multiple functions and creates a new function that is the composition
                         of those functions, applied right to left.
                     </p>
+
+                    <h3>Function Signature</h3>
+                    <p><code>compose(...fns: Function[]): Function</code></p>
+
                     <h3>Example</h3>
                     <p>Below is an example of a compose function implementation in JavaScript:</p>
                     <pre><code class="language-js">
@@ -196,6 +219,10 @@
                         Similar to compose, the pipe function takes multiple functions and creates a new function that
                         is the composition of those functions, applied left to right.
                     </p>
+
+                    <h3>Function Signature</h3>
+                    <p><code>pipe(...fns: Function[]): Function</code></p>
+
                     <h3>Example</h3>
                     <p>Below is an example of a pipe function implementation in JavaScript:</p>
                     <pre><code class="language-js">
@@ -232,6 +259,10 @@
                         The memoize function caches the results of function calls, so that subsequent calls with the
                         same arguments can return immediately with the cached result.
                     </p>
+
+                    <h3>Function Signature</h3>
+                    <p><code>memoize(fn: Function): Function</code></p>
+
                     <h3>Example</h3>
                     <p>Below is an example of a memoize function implementation in JavaScript:</p>
                     <pre><code class="language-js">
@@ -252,6 +283,10 @@
                         The filterTransducer function creates a transducer that filters elements based on a predicate
                         function. It is used in functional programming to build efficient data processing pipelines.
                     </p>
+
+                    <h3>Function Signature</h3>
+                    <p><code>filterTransducer(filterFn: Function): Function</code></p>
+
                     <h3>Example</h3>
                     <p>Below is an example of a filterTransducer function implementation in JavaScript:</p>
                     <pre><code class="language-js">
@@ -267,6 +302,10 @@
                         The mapTransducer function creates a transducer that applies a transformation function to each
                         element in a collection. It allows for efficient and composable transformations.
                     </p>
+
+                    <h3>Function Signature</h3>
+                    <p><code>mapTransducer(mapFn: Function): Function</code></p>
+
                     <h3>Example</h3>
                     <p>Below is an example of a mapTransducer function implementation in JavaScript:</p>
                     <pre><code class="language-js">
@@ -283,6 +322,14 @@
                         to a collection, producing an aggregated result. It encapsulates complex data processing in a
                         concise and efficient manner.
                     </p>
+
+                    <h3>Function Signature</h3>
+                    <p>
+                        <code
+                            >transduce(transducer: Function, reducer: Function, init: any, collection: Array): any</code
+                        >
+                    </p>
+
                     <h3>Example</h3>
                     <p>Below is an example of a transduce function implementation in JavaScript:</p>
                     <pre><code class="language-js">
